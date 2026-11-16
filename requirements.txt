@@ -1,0 +1,7 @@
+playwright==1.65.2
+reportlab==5.1.0
+numpy==1.26.3
+opencv-python==4.9.0.80
+pillow==12.3.0
+python-dotenv==1.2.4
+faker==40.54.0
