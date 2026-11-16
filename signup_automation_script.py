@@ -54,7 +54,8 @@ logger = logging.getLogger("SignupAutomation")
 # --- Configuration ---
 class Config:
     BASE_URL = os.getenv("BASE_URL", "https://authorized-partner.vercel.app")
-    HEADLESS = os.getenv("HEADLESS", "true").lower() in ("true", "1", "yes")
+    HEADLESS = os.getenv("HEADLESS", "false").lower() in ("true", "1", "yes")
+    SLOW_MO = int(os.getenv("SLOW_MO", "150"))
     BROWSER_TIMEOUT = int(os.getenv("BROWSER_TIMEOUT", "30000"))
     DEFAULT_PASSWORD = os.getenv("DEFAULT_PASSWORD", "SecurePass@2025!")
     SAMPLE_DOC_PATH = os.path.abspath(os.getenv("SAMPLE_DOCUMENT_NAME", "business_registration_sample.pdf"))
@@ -450,7 +451,7 @@ class SignupAutomationRunner:
         with sync_playwright() as p:
             browser = p.chromium.launch(
                 headless=Config.HEADLESS,
-                slow_mo=0
+                slow_mo=Config.SLOW_MO if not Config.HEADLESS else 0
             )
 
             # Record video into temp directory
@@ -853,5 +854,20 @@ class SignupAutomationRunner:
 
 
 if __name__ == "__main__":
+    import argparse
+    parser = argparse.ArgumentParser(description="Authorized Partner Signup Flow Automation")
+    parser.add_argument("--headed", action="store_true", help="Launch visible browser window (default if HEADLESS=false)")
+    parser.add_argument("--headless", action="store_true", help="Run in headless background mode")
+    parser.add_argument("--slowmo", type=int, default=None, help="Delay in ms between Playwright operations (e.g. 150)")
+    args = parser.parse_args()
+
+    if args.headed:
+        Config.HEADLESS = False
+    elif args.headless:
+        Config.HEADLESS = True
+
+    if args.slowmo is not None:
+        Config.SLOW_MO = args.slowmo
+
     runner = SignupAutomationRunner()
     runner.run()

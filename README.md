@@ -111,7 +111,8 @@ cp .env.example .env
 Default `.env` contents:
 ```env
 BASE_URL=https://authorized-partner.vercel.app
-HEADLESS=true
+HEADLESS=false
+SLOW_MO=150
 BROWSER_TIMEOUT=30000
 DEFAULT_PASSWORD=SecurePass@2025!
 SAMPLE_DOCUMENT_NAME=business_registration_sample.pdf
@@ -121,24 +122,29 @@ SAMPLE_DOCUMENT_NAME=business_registration_sample.pdf
 
 ## How to Run the Script
 
-### Single Command Execution
-
-To run the complete automated test suite (Negative tests + Full Happy Path + Video + PDF Report):
+### 1. Visible (Headed) Execution (Default)
+By default, running the script opens a visible Chromium browser window on your screen and steps through each phase with a slight pacing delay (`SLOW_MO=150ms`) so every interaction is easy to observe live:
 
 ```bash
 python signup_automation_script.py
 ```
+Or explicitly:
+```bash
+python signup_automation_script.py --headed
+```
 
-### Running in Headed Mode (Visible Browser)
-
-To visually watch the browser automate each step in real time, set `HEADLESS=false` in `.env` or run:
+### 2. Headless Mode (Background Execution)
+To run silently in the background (e.g. in CI/CD pipelines):
 
 ```bash
-# Windows (PowerShell)
-$env:HEADLESS="false"; python signup_automation_script.py
+python signup_automation_script.py --headless
+```
 
-# Linux / macOS
-HEADLESS=false python signup_automation_script.py
+### 3. Custom Slow Motion Pacing
+You can adjust the speed of the visible browser execution (in milliseconds):
+
+```bash
+python signup_automation_script.py --slowmo 300
 ```
 
 ---
