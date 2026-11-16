@@ -11,7 +11,8 @@ The suite achieves **100% automated execution with zero manual intervention**, c
 | File / Directory | Purpose |
 |---|---|
 | `signup_automation_script.py` | Complete Playwright Python automation script covering negative tests and full happy path |
-| `README.md` | Setup instructions, environment specifications, execution guide, and architectural notes |
+| `README_execution_steps.md` | Detailed execution steps, environment specifications, and test data details (as requested in submission prompt) |
+| `README.md` | Setup instructions, architecture overview, and quick-start guide |
 | `requirements.txt` | Pinned production dependencies |
 | `test_report.pdf` | Comprehensive execution report with metrics, test cases table, analysis, and embedded screenshots |
 | `demo_video.mp4` | High-definition MP4 recording of the full automated test execution |

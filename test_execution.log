@@ -1,0 +1,74 @@
+2026-11-16 19:05:22,175 [INFO] =================================================================
+2026-11-16 19:05:22,176 [INFO]        STARTING QA AUTOMATION SUITE: SIGNUP FLOW                
+2026-11-16 19:05:22,176 [INFO]        Target: https://authorized-partner.vercel.app | Headless: True                
+2026-11-16 19:05:22,176 [INFO] =================================================================
+2026-11-16 19:05:29,080 [INFO] 
+--- [Step 0: Terms Agreement & Gatekeeping] ---
+2026-11-16 19:05:33,528 [INFO] Screenshot captured: 01_landing_terms.png
+2026-11-16 19:05:34,114 [INFO] [PASS] TC-NEG-01 - Terms Agreement Gatekeeping | Navigation correctly blocked until Terms checkbox is checked
+2026-11-16 19:05:34,216 [INFO] Screenshot captured: 02_terms_accepted.png
+2026-11-16 19:05:34,564 [INFO] 
+--- [Step 1: Personal Details Negative Validations] ---
+2026-11-16 19:05:35,453 [INFO] Screenshot captured: 03_step1_empty_validation.png
+2026-11-16 19:05:35,462 [INFO] [PASS] TC-NEG-02 - Step 1 - Empty Fields Validation | Triggered expected field errors: ['First name must be at least 2 characters', 'Last name must be at least 2 characters', 'Invalid email address']
+2026-11-16 19:05:36,346 [INFO] Screenshot captured: 04_step1_invalid_email.png
+2026-11-16 19:05:36,352 [INFO] [PASS] TC-NEG-03 - Step 1 - Invalid Email Syntax | Error 'Invalid email address' displayed properly
+2026-11-16 19:05:37,162 [INFO] Screenshot captured: 05_step1_password_mismatch.png
+2026-11-16 19:05:37,163 [INFO] [PASS] TC-NEG-04 - Step 1 - Password Mismatch Validation | Advancement blocked when passwords do not match
+2026-11-16 19:05:37,163 [INFO] 
+--- [Step 1: Happy Path Account Creation & Live OTP] ---
+2026-11-16 19:05:37,163 [INFO] Provisioning temporary inbox via Mail.tm API for automated OTP...
+2026-11-16 19:05:39,384 [INFO] Temporary test inbox created: qa_intern_f602ecfc@fldubai.com
+2026-11-16 19:05:39,385 [INFO] Registering user: Andrew Baker | Email: qa_intern_f602ecfc@fldubai.com | Phone: 9859256981
+2026-11-16 19:05:39,545 [INFO] Screenshot captured: 06_step1_valid_filled.png
+2026-11-16 19:05:40,469 [INFO] Screenshot captured: 07_otp_screen.png
+2026-11-16 19:05:40,469 [INFO] Waiting for OTP email from staging backend...
+2026-11-16 19:05:46,631 [WARNING] Mail poll retry (2/15): HTTP Error 429: Too Many Requests
+2026-11-16 19:05:50,019 [INFO] Received email subject: 'Signup Confirm OTP'
+2026-11-16 19:05:50,020 [INFO] Extracted OTP code: 416840
+2026-11-16 19:05:50,086 [INFO] Screenshot captured: 08_otp_filled.png
+2026-11-16 19:05:57,919 [INFO] Screenshot captured: 09_otp_verified_success.png
+2026-11-16 19:05:57,920 [INFO] [PASS] TC-HP-01a - Step 1 - Account Creation & Email OTP Verification | OTP (416840) verified automatically; navigated to Step 2
+2026-11-16 19:05:57,920 [INFO] 
+--- [Step 2: Agency Details] ---
+2026-11-16 19:05:59,932 [INFO] Screenshot captured: 10_step2_empty_validation.png
+2026-11-16 19:05:59,937 [INFO] [PASS] TC-NEG-05 - Step 2 - Agency Details Empty Validation | Field validation errors displayed: ["Please enter your agency's name", 'Please enter your role', 'Invalid email address', 'Please enter your website', 'Please enter your address', 'You have to select at least one region of operation.']
+2026-11-16 19:06:00,803 [INFO] Screenshot captured: 11_step2_filled.png
+2026-11-16 19:06:02,178 [INFO] [PASS] TC-HP-01b - Step 2 - Agency Profile Completion | Agency details submitted; advanced to Step 3
+2026-11-16 19:06:02,178 [INFO] 
+--- [Step 3: Professional Experience & Metrics] ---
+2026-11-16 19:06:03,712 [INFO] Screenshot captured: 12_step3_empty_validation.png
+2026-11-16 19:06:03,719 [INFO] [PASS] TC-NEG-06 - Step 3 - Experience Metrics Empty Validation | Validation errors displayed: ['Please select your experience level', 'Please enter a number', 'Please enter your focus area', 'Please enter a number', 'You have to select at least one service.']
+2026-11-16 19:06:04,362 [INFO] Screenshot captured: 13_step3_filled.png
+2026-11-16 19:06:05,614 [INFO] [PASS] TC-HP-01c - Step 3 - Professional Experience & Performance | Experience metrics saved; advanced to Step 4
+2026-11-16 19:06:05,614 [INFO] 
+--- [Step 4: Verification, Preferences & Document Upload] ---
+2026-11-16 19:06:07,132 [INFO] Screenshot captured: 14_step4_empty_validation.png
+2026-11-16 19:06:07,137 [INFO] [PASS] TC-NEG-07 - Step 4 - Verification & Documents Empty Validation | Validation errors displayed: ['Please enter your registration number', 'You have to select at least one country.', 'You have to select at least one institution type.', 'At least one document must be uploaded']
+2026-11-16 19:06:08,165 [INFO] Attaching business document: C:\Users\Soyal\Desktop\Virt\business_registration_sample.pdf
+2026-11-16 19:06:09,253 [INFO] Screenshot captured: 15_step4_all_filled.png
+2026-11-16 19:06:24,221 [INFO] Screenshot captured: 16_final_dashboard.png
+2026-11-16 19:06:24,226 [INFO] [PASS] TC-HP-01d - Step 4 - Final Submission & Portal Access | Signup completed successfully; user redirected to https://authorized-partner.vercel.app/admin/profile
+2026-11-16 19:06:24,226 [INFO] Closing browser context and finalizing recording...
+2026-11-16 19:06:24,446 [INFO] Exporting recorded session to C:\Users\Soyal\Desktop\Virt\demo_video.mp4...
+2026-11-16 19:06:31,336 [INFO] Video saved successfully: C:\Users\Soyal\Desktop\Virt\demo_video.mp4
+2026-11-16 19:06:31,337 [INFO] 
+======================================================================
+2026-11-16 19:06:31,337 [INFO]                   TEST EXECUTION SUMMARY                        
+2026-11-16 19:06:31,337 [INFO] ======================================================================
+2026-11-16 19:06:31,337 [INFO]   [PASS] TC-NEG-01  | Terms Agreement Gatekeeping                   |
+2026-11-16 19:06:31,337 [INFO]   [PASS] TC-NEG-02  | Step 1 - Empty Fields Validation              |
+2026-11-16 19:06:31,337 [INFO]   [PASS] TC-NEG-03  | Step 1 - Invalid Email Syntax                 |
+2026-11-16 19:06:31,337 [INFO]   [PASS] TC-NEG-04  | Step 1 - Password Mismatch Validation         |
+2026-11-16 19:06:31,337 [INFO]   [PASS] TC-HP-01a  | Step 1 - Account Creation & Email OTP Verification |
+2026-11-16 19:06:31,338 [INFO]   [PASS] TC-NEG-05  | Step 2 - Agency Details Empty Validation      |
+2026-11-16 19:06:31,338 [INFO]   [PASS] TC-HP-01b  | Step 2 - Agency Profile Completion            |
+2026-11-16 19:06:31,338 [INFO]   [PASS] TC-NEG-06  | Step 3 - Experience Metrics Empty Validation  |
+2026-11-16 19:06:31,338 [INFO]   [PASS] TC-HP-01c  | Step 3 - Professional Experience & Performance |
+2026-11-16 19:06:31,338 [INFO]   [PASS] TC-NEG-07  | Step 4 - Verification & Documents Empty Validation |
+2026-11-16 19:06:31,338 [INFO]   [PASS] TC-HP-01d  | Step 4 - Final Submission & Portal Access     |
+2026-11-16 19:06:31,338 [INFO] ----------------------------------------------------------------------
+2026-11-16 19:06:31,338 [INFO]   TOTAL: 11 | PASSED: 11 | FAILED: 0 | TIME: 69.2s
+2026-11-16 19:06:31,338 [INFO] ======================================================================
+
+2026-11-16 19:06:31,338 [INFO] All test cases passed with 100% success rate.
